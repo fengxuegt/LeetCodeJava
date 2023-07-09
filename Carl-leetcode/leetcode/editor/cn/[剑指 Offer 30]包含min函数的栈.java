@@ -31,26 +31,42 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class MinStack {
-
+    private Stack<Integer> st;
+    private Stack<Integer> stMin;
     /** initialize your data structure here. */
     public MinStack() {
-
+        st = new Stack<>();
+        stMin = new Stack<>();
     }
     
     public void push(int x) {
-
+        st.push(x);
+        if (stMin.isEmpty()) {
+            stMin.push(x);
+        } else {
+            if (x > stMin.peek()) {
+                stMin.push(stMin.peek());
+            } else {
+                stMin.push(x);
+            }
+        }
     }
     
     public void pop() {
-
+        if (!st.isEmpty())
+            st.pop();
+        if (!stMin.isEmpty())
+            stMin.pop();
     }
     
     public int top() {
-
+//        if (!st.isEmpty())
+            return st.peek();
     }
     
     public int min() {
-
+//        if (!stMin.isEmpty())
+            return stMin.peek();
     }
 }
 
